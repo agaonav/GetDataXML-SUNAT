@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- Botón para Leer el archivo -->
+    <button onclick="getDataXML()">Obtener data</button>
+
+    <!-- La data a mostrar -->
+
+    <div>
+        <p id="RUC">
+
+        </p>
+        <p id="facturador">
+
+        </p>
+    </div>
+
+
+    <script>
+
+        /* DOCUMENTO XML ESTRUCTURADO */
+        let xmlDoc;
+        let dataProcesada;
+
+        function getDataXML() {
+
+            /* Nombre del archivo a leer */
+            let fileXML = "factura.xml";
+
+            /* Carga del archivo */
+            let client = new XMLHttpRequest();
+            client.open('GET', fileXML, false);
+            client.send();
+            let xmlData = client.responseText;
+
+            /* Convertir el texto en estructura XML */
+            let parser = new DOMParser();
+            xmlDoc = parser.parseFromString(xmlData,"text/xml");
+
+            /* Obtener datos */
+            let dataRUC = xmlDoc.getElementsByTagName("cac:Signature")[0].getElementsByTagName("cac:PartyIdentification")[0].getElementsByTagName("cbc:ID")[0].innerHTML;
+            let dataFacturador = xmlDoc.getElementsByTagName("cac:Signature")[0].getElementsByTagName("cac:PartyName")[0].innerHTML;
+
+            dataProcesada =  {
+                'ruc' : dataRUC,
+                'facturador' : dataFacturador,
+            }
+
+            /* Colocar los datos en el HTML */
+            document.getElementById("RUC").innerHTML = dataProcesada.ruc;
+            document.getElementById("facturador").innerHTML = dataProcesada.facturador;
+
+        }
+
+
+
+    </script>
+</body>
+
+</html>
