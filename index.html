@@ -19,9 +19,43 @@
         <p id="RUC">
 
         </p>
-        <p id="facturador">
+        <p id="emisor">
 
         </p>
+        <p id="serieynumero"> 
+
+        </p>
+        <p id="fecha"> 
+
+        </p>
+        <p id="comprobante"> 
+
+        </p>
+        <p id="emisordireccion"> 
+
+        </p>
+        <p id="unidad"> 
+
+        </p>
+        <p id="producto"> 
+
+        </p>
+        <p id="valorunitario"> 
+
+        </p>
+        <p id="subtotal"> 
+
+        </p>
+        <p id="igv"> 
+
+        </p>
+        <p id="total"> 
+
+        </p>
+        <p id="numeroletras"> 
+
+        </p>
+
     </div>
 
 
@@ -48,17 +82,50 @@
 
             /* Obtener datos */
             let dataRUC = xmlDoc.getElementsByTagName("cac:Signature")[0].getElementsByTagName("cac:PartyIdentification")[0].getElementsByTagName("cbc:ID")[0].innerHTML;
-            let dataFacturador = xmlDoc.getElementsByTagName("cac:Signature")[0].getElementsByTagName("cac:PartyName")[0].innerHTML;
+            let dataemisor = xmlDoc.getElementsByTagName("cac:Signature")[0].getElementsByTagName("cac:PartyName")[0].innerHTML;
+            let dataserieynumero =xmlDoc.getElementsByTagName("cbc:ID")[0].innerHTML;
+            let dataFecha =xmlDoc.getElementsByTagName("cbc:IssueDate")[0].innerHTML;
+            let datacomprobante =xmlDoc.getElementsByTagName("cbc:InvoiceTypeCode")[0].innerHTML;
+            let dataemisordireccion =xmlDoc.getElementsByTagName("cac:AccountingSupplierParty")[0].getElementsByTagName("cac:PartyLegalEntity")[0].getElementsByTagName("cac:RegistrationAddress")[0].getElementsByTagName("cac:AddressLine")[0].getElementsByTagName("cbc:Line")[0].innerHTML;
+            let dataunidad =xmlDoc.getElementsByTagName("cac:InvoiceLine")[0].getElementsByTagName("cbc:InvoicedQuantity")[0].innerHTML;
+            let dataproducto =xmlDoc.getElementsByTagName("cac:InvoiceLine")[0].getElementsByTagName("cac:Item")[0].getElementsByTagName("cbc:Description")[0].innerHTML;
+            let datavalorunitario =xmlDoc.getElementsByTagName("cac:InvoiceLine")[0].getElementsByTagName("cac:Price")[0].getElementsByTagName("cbc:PriceAmount")[0].innerHTML;
+            let datasubtotal =xmlDoc.getElementsByTagName("cac:TaxTotal")[0].getElementsByTagName("cac:TaxSubtotal")[0].getElementsByTagName("cbc:TaxableAmount")[0].innerHTML;
+            let dataigv =xmlDoc.getElementsByTagName("cac:TaxTotal")[0].getElementsByTagName("cac:TaxSubtotal")[0].getElementsByTagName("cbc:TaxAmount")[0].innerHTML;
+            let datatotal =xmlDoc.getElementsByTagName("cac:InvoiceLine")[0].getElementsByTagName("cbc:LineExtensionAmount")[0].innerHTML;
+            let datanumeroletras =xmlDoc.getElementsByTagName("cbc:Note")[0].innerHTML;
 
             dataProcesada =  {
                 'ruc' : dataRUC,
-                'facturador' : dataFacturador,
+                'emisor' : dataemisor,
+                'serieynumero' : dataserieynumero,
+                'fecha' : dataFecha,
+                'comprobante':datacomprobante,
+                'emisordireccion':dataemisordireccion,
+                'unidad':dataunidad,
+                'producto':dataproducto,
+                'valorunitario':datavalorunitario,
+                'subtotal':datasubtotal,
+                'igv':dataigv,
+                'total':datatotal,
+                'numeroletras':datanumeroletras,
+
             }
 
             /* Colocar los datos en el HTML */
             document.getElementById("RUC").innerHTML = dataProcesada.ruc;
-            document.getElementById("facturador").innerHTML = dataProcesada.facturador;
-
+            document.getElementById("emisor").innerHTML = dataProcesada.emisor;
+            document.getElementById("serieynumero").innerHTML = dataProcesada.serieynumero;
+            document.getElementById("fecha").innerHTML = dataProcesada.fecha;
+            document.getElementById("comprobante").innerHTML = dataProcesada.comprobante;
+            document.getElementById("emisordireccion").innerHTML = dataProcesada.emisordireccion;
+            document.getElementById("unidad").innerHTML = dataProcesada.unidad;
+            document.getElementById("producto").innerHTML = dataProcesada.producto;
+            document.getElementById("valorunitario").innerHTML = dataProcesada.valorunitario;
+            document.getElementById("subtotal").innerHTML=dataProcesada.subtotal;
+            document.getElementById("igv").innerHTML=dataProcesada.igv;
+            document.getElementById("total").innerHTML=dataProcesada.total;
+            document.getElementById("numeroletras").innerHTML=dataProcesada.numeroletras;
         }
 
 
