@@ -1,0 +1,52 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	max-width: 794px; /* A4 width in pixels */
+	margin: 0 auto;
+	padding: 20px;
+	
+}
+
+header {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+h1 {
+	font-size: 24px;
+	margin-bottom: 5px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	
+}
+
+th,
+td {
+	padding: 10px;
+	border: 1px solid #ddd;
+	text-align: center;
+}
+
+th {
+	background-color: #000000;
+	color: rgb(255, 255, 255);
+}
+
+tfoot td {
+	font-weight: bold;
+}
+
+@media print {
+	.container {
+		margin: 0;
+		padding: 0;
+	}
+}
